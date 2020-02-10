@@ -1,14 +1,14 @@
 # Liftoff
 CMGT Year 1 Project 3
 
-#Some info about the enngine
-# GXPEngine #
+# Some info about the enngine: GXPEngine
 Last update: 28-11-2019
+
 This is the GXPEngine. It's used for learning about game development at Saxion University of Applied Sciences.
 
 ### How do I get set up? ###
 
-* Clone the latest version of the master branch
+* Clone the latest version of the GXPEngine master branch (not this repo!!!)
 * Open the "GXPEngine.sln" file to open the project using Visual Studio Community (or whichever IDE you prefer)
 
 ### Possible improvements (actively) being worked on ###
