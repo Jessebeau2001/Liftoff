@@ -74,10 +74,7 @@
     <Compile Include="GXPEngine\FMOD\FMODSoundSystem.cs" />
     <Compile Include="GXPEngine\SoLoud\Soloud.cs" />
     <Compile Include="GXPEngine\SoLoud\SoloudSoundSystem.cs" />
+    <Compile Include="scene1.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GXPEngine\" />
-    <Folder Include="GXPEngine\AddOns\" />
-    <Folder Include="GXPEngine\SoLoud\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>
