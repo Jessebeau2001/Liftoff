@@ -11,7 +11,10 @@
 *.sln.docstates
 
 # Intergrated reference of the GXPEngine
-docs/ 
+docs/
+
+# .VScode files for running and debugging in VScode
+.vscode/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
