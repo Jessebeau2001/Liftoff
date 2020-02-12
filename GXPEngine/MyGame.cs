@@ -5,7 +5,7 @@ public class MyGame : Game
 {
 	scene1 sceneTest;
 
-	public MyGame() : base(800, 600, false)		// Create a window that's 800x600 and NOT fullscreen
+	public MyGame() : base(1920, 1080, false)		// Create a window that's 800x600 and NOT fullscreen
 	{
 		sceneTest = new scene1();
 		
