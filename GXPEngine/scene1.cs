@@ -37,6 +37,8 @@ namespace GXPEngine
 				CreateHitter((game.width / 4) * 3, (game.height / 4) * (i + 1));
 			}
 
+			CreateHitter(500, 500);
+
 			guy.x = game.width / 2 - guy.width / 2;
 			guy.y = game.height / 2 - guy.height / 2;
 			orbFade.x = 10;
