@@ -14,12 +14,22 @@ namespace GXPEngine
 		Sprite raster = new Sprite("grid.png", true, false);
 		AnimationSprite orbFade = new AnimationSprite("orb_fade.png", 7, 6, addCollider: false);
 
+		Debree rock;
+		List<Debree> debreeList = new List<Debree>();
+
 		EasyDraw canvas;
 		public scene1() : base("beta_background.png", false, false)
 		{
 			//AddChild(raster);
 			AddChild(guy);
 			AddChild(orbFade);
+			
+			for (int i = 0; i < 6; i++)
+			{
+				rock = new Debree(0, 300 * i);
+				debreeList.Add(rock);
+				AddChild(debreeList[i]);
+			}
 
 			for (int i = 0; i < 3; i++)
 			{
@@ -35,12 +45,17 @@ namespace GXPEngine
 
 		public void Update()
 		{
+			kbHandler();
+			//beatHandler();
+
+			Console.WriteLine("beatInt: " + beatInt + ", frames: " + frames + ", orbFade frame: " + orbFade.currentFrame);
+		}
+		public void kbHandler()
+		{
 			if (Input.GetKey(Key.UP)) beatInt++;
 			if (Input.GetKey(Key.DOWN)) beatInt--;
 
-			beatHandler();
-
-			Console.WriteLine("beatInt: " + beatInt + ", frames: " + frames + ", orbFade frame: " + orbFade.currentFrame);
+			if (Input.GetKey(Key.RIGHT)) Bullet(0, 0, 1);
 		}
 
 		public void beatHandler()
@@ -60,7 +75,6 @@ namespace GXPEngine
 
 		public void CreateHitter(int hitX, int hitY)
 		{
-			
 			canvas = new EasyDraw(_boxSize, _boxSize);
 			canvas.ShapeAlign(CenterMode.Min, CenterMode.Min);
 			canvas.Stroke(14, 255, 0, 255);
@@ -71,5 +85,17 @@ namespace GXPEngine
 			canvas.y = hitY - (_boxSize/2);
 			AddChild(canvas);
 		}
+
+		public void Bullet(float x, float y, float speed)
+		{
+			//bullet = new AnimationSprite("bullet.png", 7, 1);
+		}
+
+		public void Debree()
+		{
+			if (0 == 0) { }//spawn new debree
+
+		}
+
 	}
 }
