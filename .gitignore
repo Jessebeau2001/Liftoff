@@ -32,7 +32,7 @@ x86/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
 bld/
-[Bb]in/
+# [Bb]in/ REMOVED DUE TO GXPENGINE USING THIS AS THE ASSETS FOLDER
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
