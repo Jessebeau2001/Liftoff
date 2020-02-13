@@ -8,7 +8,7 @@ namespace GXPEngine
 	class scene1 : Sprite
 	{
 		private int frames = 0, beatInt = 45;
-		private int _boxSize = 100;
+		private int _boxSize = 100, _debreeIndex = 0;
 
 		Sprite guy = new Sprite("guy.png", true, false);
 		Sprite raster = new Sprite("grid.png", true, false);
@@ -24,20 +24,18 @@ namespace GXPEngine
 			AddChild(guy);
 			AddChild(orbFade);
 			
-			for (int i = 0; i < 6; i++)
-			{
-				rock = new Debree(0, 300 * i);
-				debreeList.Add(rock);
-				AddChild(debreeList[i]);
-			}
+			//for (int i = 0; i < 6; i++)
+			//{
+			//	rock = new Debree(0, 300 * i, game.width / 2, game.height / 2, 5);
+			//	debreeList.Add(rock);
+			//	AddChild(debreeList[i]);
+			//}
 
 			for (int i = 0; i < 3; i++)
 			{
 				CreateHitter(game.width / 4, (game.height / 4) * (i + 1));
 				CreateHitter((game.width / 4) * 3, (game.height / 4) * (i + 1));
 			}
-
-			CreateHitter(500, 500);
 
 			guy.x = game.width / 2 - guy.width / 2;
 			guy.y = game.height / 2 - guy.height / 2;
@@ -57,7 +55,9 @@ namespace GXPEngine
 			if (Input.GetKey(Key.UP)) beatInt++;
 			if (Input.GetKey(Key.DOWN)) beatInt--;
 
-			if (Input.GetKey(Key.RIGHT)) Bullet(0, 0, 1);
+			if (Input.GetKeyDown(Key.SPACE)) SpawnDebree();
+
+
 		}
 
 		public void beatHandler()
@@ -88,15 +88,12 @@ namespace GXPEngine
 			AddChild(canvas);
 		}
 
-		public void Bullet(float x, float y, float speed)
+		public void SpawnDebree()
 		{
-			//bullet = new AnimationSprite("bullet.png", 7, 1);
-		}
-
-		public void Debree()
-		{
-			if (0 == 0) { }//spawn new debree
-
+			rock = new Debree(0, 500, game.width / 2, game.height / 2, 5);
+			debreeList.Add(rock);
+			AddChild(debreeList[_debreeIndex]);
+			_debreeIndex++;
 		}
 
 	}

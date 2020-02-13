@@ -8,21 +8,17 @@ namespace GXPEngine
 	internal class Debree : Sprite
 	{
 		public int healthTimer = 0;
-		private float _xSpeed = 0, _ySpeed = 0, _centerX = 0, _centerY = 0, _speedMod = 300; //make _speedMod larger to make the rock/debree go slower
-		private float _distX = 0, _distY, _distance = 0;
+		private float _xSpeed = 0, _ySpeed = 0, _distance = 0;
 
-		public Debree(float spawnX, float spawnY) : base("rock.png", true)
+		public Debree(float x, float y, float targX, float targY, float speed) : base("rock.png", true)
 		{
-			x = spawnX;
-			y = spawnY;
-			
-			_centerX = 500;
-			_centerY = 500;
+			this.x = x;
+			this.y = y;
 
-			_distance = Extensions.GetDistance(_centerX, _centerY, x, y);
+			_distance = Extensions.GetDistance(targX, targY, x, y);
 
-			_xSpeed = (_centerX - x) / _distance;
-			_ySpeed = (_centerY - y) / _distance;
+			_xSpeed = (targX - x) / _distance;
+			_ySpeed = (targY - y) / _distance;
 			SetOrigin(width / 2, height / 2);
 		}
 
