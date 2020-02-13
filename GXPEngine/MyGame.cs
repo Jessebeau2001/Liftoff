@@ -4,11 +4,15 @@ using GXPEngine;								// GXPEngine contains the engine
 public class MyGame : Game
 {
 	scene1 sceneTest;
+	Grapher grapher;
 
 	public MyGame() : base(1920, 1080, false)		// Create a window that's 800x600 and NOT fullscreen
 	{
 		sceneTest = new scene1();
+		grapher = new Grapher();
+
 		AddChild(sceneTest);
+		AddChild(grapher);
 
 		// Debree rock = new Debree();
 		// AddChild(rock);

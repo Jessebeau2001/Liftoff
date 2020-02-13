@@ -48,7 +48,7 @@ namespace GXPEngine
 			kbHandler();
 			//beatHandler();
 
-			Console.WriteLine("beatInt: " + beatInt + ", frames: " + frames + ", orbFade frame: " + orbFade.currentFrame);
+			//Console.WriteLine("beatInt: " + beatInt + ", frames: " + frames + ", orbFade frame: " + orbFade.currentFrame);
 		}
 		public void kbHandler()
 		{
@@ -90,7 +90,7 @@ namespace GXPEngine
 
 		public void SpawnDebree()
 		{
-			rock = new Debree(0, 500, game.width / 2, game.height / 2, 5);
+			rock = new Debree(0, 900, game.width / 2, game.height / 2, 5);
 			debreeList.Add(rock);
 			AddChild(debreeList[_debreeIndex]);
 			_debreeIndex++;

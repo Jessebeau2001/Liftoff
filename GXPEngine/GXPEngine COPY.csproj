@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Project Sdk="Microsoft.NET.Sdk" DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003"> 
+  <PropertyGroup>
+    <TargetFramework>net40</TargetFramework>
+
+    <Configuration>Debug</Configuration>
+    <Platform>x86</Platform>
+
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>GXPEngine</RootNamespace>
+    <AssemblyName>GXPEngine</AssemblyName>
+
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  
+  <ItemGroup>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />  
+  </ItemGroup>
+</Project>

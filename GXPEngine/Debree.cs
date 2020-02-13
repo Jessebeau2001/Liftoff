@@ -8,18 +8,18 @@ namespace GXPEngine
 	internal class Debree : Sprite
 	{
 		public int healthTimer = 0;
-		private float _xSpeed = 0, _ySpeed = 0, _distance = 0;
+		private float _xSpeed = 0, _ySpeed = 0, _xDist = 0, _yDist = 0, _distance = 0, _direcCof = 0;
 
-		public Debree(float x, float y, float targX, float targY, float speed) : base("rock.png", true)
+		public Debree(float x, float y, float _xTarg, float _yTarg, float speed) : base("rock.png", true)
 		{
+			SetOrigin(width / 2, height / 2);
 			this.x = x;
 			this.y = y;
 
-			_distance = Extensions.GetDistance(targX, targY, x, y);
+			_distance = Extensions.GetDistance(_xTarg, _yTarg, x, y);
 
-			_xSpeed = (targX - x) / _distance;
-			_ySpeed = (targY - y) / _distance;
-			SetOrigin(width / 2, height / 2);
+			_xSpeed = (_xTarg - x) / _distance;
+			_ySpeed = (_yTarg - y) / _distance;
 		}
 
 		public void Update()
@@ -29,6 +29,11 @@ namespace GXPEngine
 			y += _ySpeed * 5;
 
 			Console.WriteLine(_distance);
+		}
+
+		public void CalcSpawpPoint(float x, float y)
+		{
+			
 		}
 	}
 	static class Extensions
