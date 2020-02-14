@@ -34,6 +34,7 @@ namespace GXPEngine
 
 	static class Extensions //Extension class for the mathematical formulas
 	{
+		
 		///<summary> Re-maps a number from one range to another.</summary>wel
 		public static float Map(this float value, float from1, float to1, float from2, float to2)
 		{

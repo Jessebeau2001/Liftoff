@@ -5,22 +5,21 @@ public class MyGame : Game
 {
 	scene1 sceneTest;
 	Grapher grapher;
+	Beat beatSystem;
 
-	public MyGame() : base(1920, 1080, false)		// Create a window that's 800x600 and NOT fullscreen
+	public MyGame() : base(1366, 768, false)        // Create a window that's 800x600 and NOT fullscreen
 	{
 		sceneTest = new scene1();
 		grapher = new Grapher();
-
+		beatSystem = new Beat();
 		AddChild(sceneTest);
 		AddChild(grapher);
-
-		// Debree rock = new Debree();
-		// AddChild(rock);
+		AddChild(beatSystem);
 	}
 
 	void Update()
 	{
-		// Empty
+		
 	}
 
 	static void Main()							// Main() is the first method that's called when the program is run

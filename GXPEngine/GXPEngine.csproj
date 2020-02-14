@@ -36,6 +36,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Beat.cs" />
     <Compile Include="Debree.cs" />
     <Compile Include="Grapher.cs" />
     <Compile Include="MyGame.cs" />
