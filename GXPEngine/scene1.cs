@@ -17,14 +17,15 @@ namespace GXPEngine
 		Debree rock;
 		List<Debree> debreeList = new List<Debree>(); //Creates the Debree ArrayList
 		EasyDraw canvas;
+		Random rnd = new Random();
 
-		public scene1() : base("beta_background.png", false, false)
+		public scene1() : base("background2.png", false, false)
 		{
 			//AddChild(raster);
 			AddChild(guy); //Temporary Sprite in the center of the scene
 			AddChild(orbFade);
 
-			for (int i = 0; i < 3; i++) //Spawns in the 6 hitboxes that would later be used for collision (REPLACE WITH 2 BARS INSTEAD OF HITBOX)
+			for (int i = 0; i < 0; i++) //Spawns in the 6 hitboxes that would later be used for collision (REPLACE WITH 2 BARS INSTEAD OF HITBOX)
 			{																		//Is to be replaced by 2 verticle shieldy bois
 				CreateHitter(game.width / 4, (game.height / 4) * (i + 1));			//Is to be replaced by 2 verticle shieldy bois	
 				CreateHitter((game.width / 4) * 3, (game.height / 4) * (i + 1));	//Is to be replaced by 2 verticle shieldy bois
@@ -39,7 +40,7 @@ namespace GXPEngine
 		public void Update()
 		{
 			kbHandler();
-			beatHandler();
+			//beatHandler();
 
 		
 		}
@@ -47,10 +48,10 @@ namespace GXPEngine
 		{
 			if (Input.GetKey(Key.UP)) beatInt++;
 			if (Input.GetKey(Key.DOWN)) beatInt--;
-			if (Input.GetKeyDown(Key.SPACE)) SpawnDebree();
+			if (Input.GetKeyDown(Key.SPACE)) SpawnDebree(rnd.Next(0, game.width), rnd.Next(0, game.height));
 		}
 
-		public void beatHandler() //Handles all beat related calculation (And at the moment also a fadeey boi)
+		public void beatHandler() //Handles all beat related calculation (And at the moment also a fade-y boi)
 		{
 			frames++;
 			if (orbFade.currentFrame < orbFade.frameCount - 1) orbFade.NextFrame();
@@ -74,9 +75,9 @@ namespace GXPEngine
 			AddChild(canvas);
 		}
 
-		public void SpawnDebree() //Spawns a piece of debree inside an arrayList to be filled with debree
+		public void SpawnDebree(float x, float y) //Spawns a piece of debree inside an arrayList to be filled with debree
 		{
-			rock = new Debree(0, 900, game.width / 2, game.height / 2, 5);
+			rock = new Debree(x, y, game.width / 2, game.height / 2, 5);
 			debreeList.Add(rock);
 			AddChild(debreeList[_debreeIndex]);
 			_debreeIndex++;
