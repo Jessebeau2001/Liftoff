@@ -23,6 +23,7 @@ docs/
 mono_crash.*
 
 # Build results
+GXPENGINE.exe
 # [Dd]ebug/ REMOVED DUE TO GXPENGINE USING THIS AS THE ASSETS FOLDER
 [Dd]ebugPublic/
 [Rr]elease/
