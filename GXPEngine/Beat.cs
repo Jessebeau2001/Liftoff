@@ -11,7 +11,7 @@ namespace GXPEngine
 		private int _frame = 0, deltaTime;
 
 		//SoundChannel soundEngine;
-		Sound kick = new Sound("kick.ogg", false, true);
+		Sound kick = new Sound("kick.wav");
 
 		public Beat() : base("rock.png")
 		{
@@ -24,17 +24,20 @@ namespace GXPEngine
 		public void Update()
 		{
 			if (Input.GetKeyDown(Key.P)) kick.Play();
+			if (Input.GetKeyUp(Key.A)) { }
+
+
 
 			deltaTime += Time.deltaTime;
 			Console.WriteLine("Ellapsed time: " + deltaTime + ", Current frame: " + _frame);
 
-			if (deltaTime >= 1000 / BPS)
-			{
-				rotation += 90;
-				deltaTime = 0;
-				kick.Play();
-				//Console.WriteLine("BPM: " + BPM + " BPS: " + BPS + " FPB: " + FPB);
-			}
+			//if (deltaTime >= 1000 / BPS)
+			//{
+			//	rotation += 90;
+			//	deltaTime = 0;
+			//	kick.Play();
+			//	//Console.WriteLine("BPM: " + BPM + " BPS: " + BPS + " FPB: " + FPB);
+			//}
 		}
 	}
 }
