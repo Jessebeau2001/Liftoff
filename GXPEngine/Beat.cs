@@ -15,23 +15,20 @@ namespace GXPEngine
 		public Beat() : base("rock.png")
 		{
 			AddChild(debreeSpawner);
-			engine.Play2D("sounds/soundtrack.ogg");
+			//engine.Play2D("sounds/soundtrack.ogg");
 			BPS = BPM / 60;			// 180 / 60 = 3 beats / second
 			FPB = framerate / BPS;  // 60 / 3 = 20 frames / beat
 			engine.Play2D("sounds/kick.ogg");
 		}
 
 		public void Update()
-		{
-			if (Input.GetKeyDown(Key.P)) engine.Play2D("sounds/kick.ogg");
-
+		{ 
 			deltaTime += Time.deltaTime;
 
-			if (deltaTime > (1000 / BPS))
+			if (deltaTime > (1000 / BPS) * 4)
 			{
 				deltaTime = 0;
-				engine.Play2D("sounds/kick.ogg");
-				debreeSpawner.SpawnDebree(100, 100);
+				debreeSpawner.SpawnDebree(-30, game.height / 2);
 			}
 
 			Console.WriteLine("Ellapsed time: " + deltaTime + ", Current frame: " + _frame);

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using IrrKlang;
 
 namespace GXPEngine
 {
@@ -10,14 +7,24 @@ namespace GXPEngine
 	{
 		public float distance = 230;
 		public int thisKey = Key.Z;
-		private bool _active = false;
+		private bool _active = false, _mirrored = false;
+
+		ISoundEngine engine = new ISoundEngine();
 
 		public Intercept(bool mirrored) : base("bar_anim.png", 10, 2)
 		{
+			_mirrored = mirrored;
+			width = 100;
 			SetOrigin(width / 2, 0);
 
-			if (mirrored) { x = (game.width / 2) - distance; }
-			else { x = (game.width / 2) + distance; thisKey = Key.X; }
+			if (mirrored)
+			{
+				x = (game.width / 2) - distance;
+			} else
+			{
+				x = (game.width / 2) + distance;
+				thisKey = Key.X;
+			}
 
 			Mirror(mirrored, false);
 			currentFrame = frameCount;
@@ -25,15 +32,19 @@ namespace GXPEngine
 
 		public void Update()
 		{
+			_active = false;
 			if (frameCount > currentFrame + 1)
 			{
 				NextFrame();
-				_active = true;
-			} else _active = false;
+			}
 
 			if (Input.GetKeyDown(thisKey))
 			{
 				currentFrame = 0;
+				_active = true;
+
+				if (_mirrored) engine.Play2D("sounds/kick.ogg");
+					else engine.Play2D("sounds/clap.ogg");
 			}
 
 			Console.WriteLine(_active);

@@ -26,7 +26,5 @@ namespace GXPEngine
 			AddChild(debreeList[_debreeIndex]);
 			_debreeIndex++;
 		}
-
-		
 	}
 }
