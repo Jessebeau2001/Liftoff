@@ -7,7 +7,10 @@ namespace GXPEngine
 	{
 		public float distance = 230;
 		public int thisKey = Key.Z;
+		
 		private bool _active = false, _mirrored = false;
+
+		Sprite border = new Sprite("bar_stroke.png", true, false);
 
 		ISoundEngine engine = new ISoundEngine();
 
@@ -28,6 +31,9 @@ namespace GXPEngine
 
 			Mirror(mirrored, false);
 			currentFrame = frameCount;
+
+			AddChild(border);
+			border.SetOrigin(width / 2, 0);
 		}
 
 		public void Update()
@@ -38,7 +44,7 @@ namespace GXPEngine
 				NextFrame();
 			}
 
-			if (Input.GetKeyDown(thisKey))
+			if (Input.GetKeyDown(thisKey) && currentFrame >= 5)
 			{
 				currentFrame = 0;
 				_active = true;
@@ -46,12 +52,11 @@ namespace GXPEngine
 				if (_mirrored) engine.Play2D("sounds/kick.ogg");
 					else engine.Play2D("sounds/clap.ogg");
 			}
-
-			Console.WriteLine(_active);
 		}
 
-		public bool isActive()
+		public bool isActive(float debX)
 		{
+			if (Mathf.Abs(x - debX) > 0) { }
 			return _active;
 		}
 	}

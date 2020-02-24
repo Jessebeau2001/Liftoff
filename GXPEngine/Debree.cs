@@ -25,7 +25,7 @@ namespace GXPEngine
 		public void Update()
 		{
 			rotation += 10;
-			x += _xSpeed * 5; //Appplies the calculated force/movement speed
+			x += _xSpeed * 5;
 			y += _ySpeed * 5;
 
 			if (x > game.width + 30 || x < -30)
@@ -35,19 +35,18 @@ namespace GXPEngine
 					LateDestroy();
 				}
 			}
-			//Console.WriteLine(_distance);
 		}
 
 		void OnCollision(GameObject other)
 		{
 			var colInfo = collider.GetCollisionInfo(other.collider);
-			if (other is Intercept && (other as Intercept).isActive())
+			if (other is Intercept && (other as Intercept).isActive(x))
 			{
 				LateDestroy();
 			}
-		}
 
-		//other is Player && !(other as Player).isAlive()
+			if (other.name == "guy.png") LateDestroy();
+		}
 	}
 
 	static class Extensions //Extension class for the mathematical formulas

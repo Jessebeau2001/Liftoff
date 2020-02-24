@@ -11,6 +11,7 @@ namespace GXPEngine
 		private int _debreeIndex = 0;
 		public DebreeSpawner() : base("rock.png")
 		{
+
 		}
 
 		public void Update()
