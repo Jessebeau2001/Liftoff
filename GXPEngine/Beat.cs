@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using IrrKlang;
 
 namespace GXPEngine
 {
@@ -10,34 +8,34 @@ namespace GXPEngine
 		public int BPM = 180 , BPS, FPB, framerate = 60; //BPM: Beats Per Minute; BPS: Beats Per Second; FPB = Frames Per Beat
 		private int _frame = 0, deltaTime;
 
-		//SoundChannel soundEngine;
-		Sound kick = new Sound("kick.wav");
+		ISoundEngine engine = new ISoundEngine();
 
 		public Beat() : base("rock.png")
 		{
+			engine.Play2D("sounds/soundtrack.ogg");
 			x = 300;
 			y = 300;
 			BPS = BPM / 60;			// 180 / 60 = 3 beats / second
-			FPB = framerate / BPS;	// 60 / 3 = 20 frames / beat
+			FPB = framerate / BPS;  // 60 / 3 = 20 frames / beat
+			engine.Play2D("sounds/kick.ogg");
 		}
 
 		public void Update()
 		{
-			if (Input.GetKeyDown(Key.P)) kick.Play();
-			if (Input.GetKeyUp(Key.A)) { }
+			x = -200;
 
-
+			if (Input.GetKeyDown(Key.P)) engine.Play2D("sounds/kick.ogg");
 
 			deltaTime += Time.deltaTime;
-			Console.WriteLine("Ellapsed time: " + deltaTime + ", Current frame: " + _frame);
 
-			//if (deltaTime >= 1000 / BPS)
-			//{
-			//	rotation += 90;
-			//	deltaTime = 0;
-			//	kick.Play();
-			//	//Console.WriteLine("BPM: " + BPM + " BPS: " + BPS + " FPB: " + FPB);
-			//}
+			if (deltaTime > (1000 / BPS))
+			{
+				deltaTime = 0;
+				engine.Play2D("sounds/kick.ogg");
+				x = 300;
+			}
+
+			Console.WriteLine("Ellapsed time: " + deltaTime + ", Current frame: " + _frame);
 		}
 	}
 }

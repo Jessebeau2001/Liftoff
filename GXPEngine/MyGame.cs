@@ -10,10 +10,10 @@ public class MyGame : Game
 	public MyGame() : base(1366, 768, false)        // Create a window that's 800x600 and NOT fullscreen
 	{
 		sceneTest = new scene1();
-		grapher = new Grapher();
+		//grapher = new Grapher();
 		beatSystem = new Beat();
 		AddChild(sceneTest);
-		AddChild(grapher);
+		//AddChild(grapher);
 		AddChild(beatSystem);
 	}
 
