@@ -4,17 +4,19 @@ using GXPEngine;								// GXPEngine contains the engine
 public class MyGame : Game
 {
 	scene1 sceneTest;
-	Grapher grapher;
 	Beat beatSystem;
 
 	public MyGame() : base(1366, 768, false)        // Create a window that's 800x600 and NOT fullscreen
 	{
 		sceneTest = new scene1();
-		//grapher = new Grapher();
 		beatSystem = new Beat();
+		Intercept interceptL = new Intercept(true);
+		Intercept interceptR = new Intercept(false);
+
 		AddChild(sceneTest);
-		//AddChild(grapher);
 		AddChild(beatSystem);
+		AddChild(interceptL);
+		AddChild(interceptR);
 	}
 
 	void Update()

@@ -28,7 +28,7 @@ namespace GXPEngine
 			x += _xSpeed * 5; //Appplies the calculated force/movement speed
 			y += _ySpeed * 5;
 
-			Console.WriteLine(_distance);
+			//Console.WriteLine(_distance);
 		}
 	}
 

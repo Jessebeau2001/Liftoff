@@ -13,8 +13,7 @@ namespace GXPEngine
 		public Beat() : base("rock.png")
 		{
 			engine.Play2D("sounds/soundtrack.ogg");
-			x = 300;
-			y = 300;
+			x = -300;
 			BPS = BPM / 60;			// 180 / 60 = 3 beats / second
 			FPB = framerate / BPS;  // 60 / 3 = 20 frames / beat
 			engine.Play2D("sounds/kick.ogg");
@@ -22,8 +21,6 @@ namespace GXPEngine
 
 		public void Update()
 		{
-			x = -200;
-
 			if (Input.GetKeyDown(Key.P)) engine.Play2D("sounds/kick.ogg");
 
 			deltaTime += Time.deltaTime;
@@ -32,7 +29,6 @@ namespace GXPEngine
 			{
 				deltaTime = 0;
 				engine.Play2D("sounds/kick.ogg");
-				x = 300;
 			}
 
 			Console.WriteLine("Ellapsed time: " + deltaTime + ", Current frame: " + _frame);
