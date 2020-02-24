@@ -18,7 +18,7 @@ namespace GXPEngine
 
 			_distance = Extensions.GetDistance(_xTarg, _yTarg, x, y); //Calculates the distance from spawnpoint to target x & y.
 
-			_xSpeed = (_xTarg - x) / _distance;	//Calculates the amount of x its needs to move to get to its destenation
+			_xSpeed = (_xTarg - x) / _distance; //Calculates the amount of x its needs to move to get to its destenation
 			_ySpeed = (_yTarg - y) / _distance; //Calculates the y amount to move and stay in sync with its x
 		}
 
@@ -28,8 +28,26 @@ namespace GXPEngine
 			x += _xSpeed * 5; //Appplies the calculated force/movement speed
 			y += _ySpeed * 5;
 
+			if (x > game.width + 30 || x < -30)
+			{
+				if (y > game.height || y < -30)
+				{
+					LateDestroy();
+				}
+			}
 			//Console.WriteLine(_distance);
 		}
+
+		void OnCollision(GameObject other)
+		{
+			var colInfo = collider.GetCollisionInfo(other.collider);
+			if (other is Intercept && (other as Intercept).isActive())
+			{
+				LateDestroy();
+			}
+		}
+
+		//other is Player && !(other as Player).isAlive()
 	}
 
 	static class Extensions //Extension class for the mathematical formulas

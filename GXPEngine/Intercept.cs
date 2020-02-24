@@ -10,7 +10,7 @@ namespace GXPEngine
 	{
 		public float distance = 230;
 		public int thisKey = Key.Z;
-
+		private bool _active = false;
 
 		public Intercept(bool mirrored) : base("bar_anim.png", 10, 2)
 		{
@@ -25,19 +25,23 @@ namespace GXPEngine
 
 		public void Update()
 		{
-			Console.WriteLine("currentframe: " + currentFrame + " frameCount: " + frameCount);
-
 			if (frameCount > currentFrame + 1)
 			{
 				NextFrame();
-			}
+				_active = true;
+			} else _active = false;
 
 			if (Input.GetKeyDown(thisKey))
 			{
 				currentFrame = 0;
 			}
 
+			Console.WriteLine(_active);
+		}
 
+		public bool isActive()
+		{
+			return _active;
 		}
 	}
 }

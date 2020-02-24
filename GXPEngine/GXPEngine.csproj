@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Beat.cs" />
     <Compile Include="Debree.cs" />
-    <Compile Include="Grapher.cs" />
+    <Compile Include="DebreeSpawner.cs" />
     <Compile Include="Intercept.cs" />
     <Compile Include="MyGame.cs" />
     <Compile Include="GXPEngine\Canvas.cs" />
