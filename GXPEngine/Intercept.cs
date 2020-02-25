@@ -1,31 +1,30 @@
-﻿using System;
-using IrrKlang;
-using GXPEngine.Core;
+﻿using IrrKlang;
 
 namespace GXPEngine
 {
-	class Intercept : Pivot
+	class Intercept : EasyDraw
 	{
 		public float distance = 230;
 		public int thisKey = Key.Z;
 		
 		private bool _active = false, _mirrored = false;
 
-		AnimationSprite bar = new AnimationSprite("bar_anim.png", 10, 2, addCollider:false);
-		
+		//AnimationSprite bar = new AnimationSprite("bar_anim.png", 10, 2, addCollider:true);
+		AnimationSprite bar = new AnimationSprite("rainbow_bar.png", 13, 1, addCollider: false);
+
 		ISoundEngine engine = new ISoundEngine();
 
-		public Intercept(bool mirrored)
+		public Intercept(bool mirrored, int width, int height) : base (width, height)
 		{
 			_mirrored = mirrored;
 			bar.SetOrigin(bar.width / 2, 0);
-			if (mirrored)
+			if (!mirrored)
 			{
-				bar.x = game.width / 2 - distance;
+				x = game.width / 2 - distance;
 			}
 			else
 			{
-				bar.x = game.width / 2 + distance;
+				x = game.width / 2 + distance;
 				thisKey = Key.X;
 			}
 			bar.Mirror(mirrored, false);
