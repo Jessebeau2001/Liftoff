@@ -49,8 +49,8 @@ namespace GXPEngine
 				bar.currentFrame = 0;
 				_active = true;
 
-				if (_mirrored) engine.Play2D("sounds/kick.ogg");
-					else engine.Play2D("sounds/clap.ogg");
+				if (_mirrored) engine.Play2D("sounds/clap.ogg");
+					else engine.Play2D("sounds/kick.ogg");
 			}
 		}
 
