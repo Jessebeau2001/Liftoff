@@ -3,7 +3,7 @@ using IrrKlang;
 
 namespace GXPEngine
 {
-	class Beat : Sprite
+	class Beat : Pivot
 	{
 		public int BPM = 180 , BPS, FPB, framerate = 60; //BPM: Beats Per Minute; BPS: Beats Per Second; FPB = Frames Per Beat
 		private int deltaTime, _spawnSide = 0;
@@ -12,7 +12,7 @@ namespace GXPEngine
 		ISoundEngine engine = new ISoundEngine();
 
 		Random rnd = new Random();
-		public Beat() : base("rock.png")
+		public Beat()
 		{
 			AddChild(debreeSpawner);
 			engine.Play2D("sounds/soundtrack.ogg");

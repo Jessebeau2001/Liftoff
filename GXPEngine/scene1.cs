@@ -11,17 +11,12 @@ namespace GXPEngine
 
 		public scene1() : base("background2.png", false, false)
 		{
-			AddChild(guy);
-
 			guy.SetOrigin(guy.width / 2, guy.height / 2);
 
 			guy.x = game.width / 2;
 			guy.y = game.height / 2;
 
-			guy.scaleX = .5f;
-			guy.scaleY = .5f;
-
-			
+			AddChild(guy);
 		}
 
 		public void Update()
