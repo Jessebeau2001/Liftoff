@@ -16,6 +16,7 @@ namespace GXPEngine
 
 		public Intercept(bool mirrored, int width, int height) : base (width, height)
 		{
+			Rect(0, game.height / 2, width, height);
 			_mirrored = mirrored;
 			bar.SetOrigin(bar.width / 2, 0);
 			if (!mirrored)

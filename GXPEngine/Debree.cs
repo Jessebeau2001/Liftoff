@@ -2,26 +2,32 @@
 
 namespace GXPEngine
 {
-	internal class Debree : Sprite
+	internal class Debree : EasyDraw
 	{
 		public int healthTimer = 0;
-		private float _xSpeed = 0, _ySpeed = 0, _distance = 0;
+		private float _xSpeed, _ySpeed, _distance, _turnSpeed;
 
-		public Debree(float x, float y, float _xTarg, float _yTarg, float speed) : base("rock.png", true)
+		Sprite rock = new Sprite("rock.png", false);
+
+		public Debree(float x, float y, float _xTarg, float _yTarg, int turnSpeed) : base(20, 20)
 		{
-			SetOrigin(width / 2, height / 2);
+			rock.SetOrigin(rock.width / 2, rock.height / 2);
 			this.x = x;
 			this.y = y;
+			_turnSpeed = turnSpeed;
+
+			SetOrigin(width / 2, height / 2);
+
+			AddChild(rock);
 
 			_distance = Extensions.GetDistance(_xTarg, _yTarg, x, y);
-
 			_xSpeed = (_xTarg - x) / _distance; //Calculates the amount of x its needs to move to get to its destenation
 			_ySpeed = (_yTarg - y) / _distance; //Calculates the y amount to move and stay in sync with its x
 		}
 
 		public void Update()
 		{
-			rotation += 10;
+			rotation += _turnSpeed;
 			x += _xSpeed * 5;
 			y += _ySpeed * 5;
 
@@ -44,7 +50,7 @@ namespace GXPEngine
 			}
 
 
-			if (other.name == "rock.png") LateDestroy();
+			//if (other.name == "rock.png") LateDestroy();
 		}
 	}
 
