@@ -1,56 +1,57 @@
-﻿using System;
-using IrrKlang;
+﻿using IrrKlang;
 
 namespace GXPEngine
 {
-	class Intercept : AnimationSprite
+	class Intercept : EasyDraw
 	{
 		public float distance = 230;
 		public int thisKey = Key.Z;
 		
 		private bool _active = false, _mirrored = false;
 
-		Sprite border = new Sprite("bar_stroke.png", true, false);
+		//AnimationSprite bar = new AnimationSprite("bar_anim.png", 10, 2, addCollider:true);
+		AnimationSprite bar = new AnimationSprite("rainbow_bar.png", 13, 1, addCollider: false);
 
 		ISoundEngine engine = new ISoundEngine();
 
-		public Intercept(bool mirrored) : base("bar_anim.png", 10, 2)
+		public Intercept(bool mirrored, int width, int height) : base (width, height)
 		{
+			Rect(0, game.height / 2, width, height);
 			_mirrored = mirrored;
-			width = 100;
-			SetOrigin(width / 2, 0);
-
-			if (mirrored)
+			bar.SetOrigin(bar.width / 2, 0);
+			if (!mirrored)
 			{
-				x = (game.width / 2) - distance;
-			} else
+				x = game.width / 2 - distance;
+			}
+			else
 			{
-				x = (game.width / 2) + distance;
+				x = game.width / 2 + distance;
 				thisKey = Key.X;
 			}
+			bar.Mirror(mirrored, false);
+			bar.currentFrame = bar.frameCount;
+			bar.width = 100;
+			AddChild(bar);
 
-			Mirror(mirrored, false);
-			currentFrame = frameCount;
-
-			AddChild(border);
-			border.SetOrigin(width / 2, 0);
+			//AddChild(border);
+			//border.SetOrigin(bar.width / 2, 0);
 		}
 
 		public void Update()
 		{
 			_active = false;
-			if (frameCount > currentFrame + 1)
+			if (bar.frameCount > bar.currentFrame + 1)
 			{
-				NextFrame();
+				bar.NextFrame();
 			}
 
-			if (Input.GetKeyDown(thisKey) && currentFrame >= 5)
+			if (Input.GetKeyDown(thisKey) && bar.currentFrame >= 5)
 			{
-				currentFrame = 0;
+				bar.currentFrame = 0;
 				_active = true;
 
-				if (_mirrored) engine.Play2D("sounds/kick.ogg");
-					else engine.Play2D("sounds/clap.ogg");
+				if (_mirrored) engine.Play2D("sounds/clap.ogg");
+					else engine.Play2D("sounds/kick.ogg");
 			}
 		}
 

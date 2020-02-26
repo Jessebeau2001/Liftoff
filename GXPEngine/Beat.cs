@@ -3,37 +3,54 @@ using IrrKlang;
 
 namespace GXPEngine
 {
-	class Beat : Sprite
+	class Beat : Pivot
 	{
-		public int BPM = 180 , BPS, FPB, framerate = 60; //BPM: Beats Per Minute; BPS: Beats Per Second; FPB = Frames Per Beat
-		private int deltaTime, _spawnSide = 0;
+		public float BPM = 150 , BPS, FPB, framerate = 60, beatMs, deltaTime; //BPM: Beats Per Minute; BPS: Beats Per Second; FPB = Frames Per Beat
+		private int _timeStamp = 0;
 
-		DebreeSpawner debreeSpawner = new DebreeSpawner();
+		private bool _clap = true;
+
 		ISoundEngine engine = new ISoundEngine();
+		DebreeSpawner debreeSpawner = new DebreeSpawner();
+		MapParser parser = new MapParser();
 
 		Random rnd = new Random();
-		public Beat() : base("rock.png")
+		public Beat()
 		{
 			AddChild(debreeSpawner);
-			engine.Play2D("sounds/soundtrack.ogg");
+			//engine.Play2D("sounds/soundtrack.ogg"); 
+
 			BPS = BPM / 60;			// 180 / 60 = 3 beats / second
 			FPB = framerate / BPS;  // 60 / 3 = 20 frames / beat
-			engine.Play2D("sounds/kick.ogg");
+			beatMs = (1000 / BPS) * 1; //The amount of time in ms that needs to pass for 1 beat ADD MULTIPLIER TO MAKE LESS ROCKS APPEAR
+
+			parser.LoadBeatmap();
+
+			//IT TAKES 6 BEATS FOR THE FIRST ROCK TO REACH SO CREATE A DELAY FOR PLAYING THE SONG
 		}
 
 		public void Update()
-		{ 
+		{
 			deltaTime += Time.deltaTime;
 
-			if (deltaTime > (1000 / BPS) * 2)
+			if (deltaTime > beatMs)
 			{
-				deltaTime = 0;
+				deltaTime -= beatMs;
 
-				_spawnSide = rnd.Next(0, 2);
-				Console.WriteLine(_spawnSide);
-				if (_spawnSide == 0) debreeSpawner.SpawnDebree(-30, game.height / 2);
-					else debreeSpawner.SpawnDebree(game.width + 30, game.height / 2);
+				if (parser.GetData(0, _timeStamp) == "1") debreeSpawner.SpawnDebree(-30, game.height / 2);
+				if (parser.GetData(1, _timeStamp) == "1") debreeSpawner.SpawnDebree(game.width + 30, game.height / 2);
+
+				//clapKick();
+				if (_timeStamp == 4) engine.Play2D("sounds/GangPlankCut.ogg");
+				_timeStamp++;
 			}
+		}
+
+		public void clapKick()
+		{
+			if(_clap) engine.Play2D("sounds/clap.ogg");
+				else engine.Play2D("sounds/kick.ogg");
+			_clap = !_clap;
 		}
 	}
 }

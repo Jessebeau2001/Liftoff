@@ -5,23 +5,24 @@ using System.Text;
 
 namespace GXPEngine
 {
-	class scene1 : Sprite
+	class scene1 : EasyDraw
 	{
-		Sprite guy = new Sprite("guy.png", true, true);
+		Sprite guy = new Sprite("guy.png", true, false);
+		Sprite background = new Sprite("background2.png", false, false);
 
-		public scene1() : base("background2.png", false, false)
+		public scene1() : base(20, 20)
 		{
-			AddChild(guy);
+			x = game.width / 2;
+			y = game.height / 2;
+
+			background.SetOrigin(background.width / 2, background.height / 2);
+			//AddChild(background);
 
 			guy.SetOrigin(guy.width / 2, guy.height / 2);
+			guy.scale = 0.6f;
+			//AddChild(guy);
 
-			guy.x = game.width / 2;
-			guy.y = game.height / 2;
-
-			guy.scaleX = .5f;
-			guy.scaleY = .5f;
-
-			
+			Rect(0, 0, width, height);
 		}
 
 		public void Update()

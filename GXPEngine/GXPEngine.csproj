@@ -47,6 +47,7 @@
     <Compile Include="Debree.cs" />
     <Compile Include="DebreeSpawner.cs" />
     <Compile Include="Intercept.cs" />
+    <Compile Include="MapParser.cs" />
     <Compile Include="MyGame.cs" />
     <Compile Include="GXPEngine\Canvas.cs" />
     <Compile Include="GXPEngine\Game.cs" />

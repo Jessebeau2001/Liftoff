@@ -1,5 +1,6 @@
 using System;									// System contains a lot of default C# libraries 
-using GXPEngine;								// GXPEngine contains the engine
+using GXPEngine;                                // GXPEngine contains the engine
+using System.Xml;
 
 public class MyGame : Game
 {
@@ -10,8 +11,8 @@ public class MyGame : Game
 	{
 		sceneTest = new scene1();
 		beatSystem = new Beat();
-		Intercept interceptL = new Intercept(true);
-		Intercept interceptR = new Intercept(false);
+		Intercept interceptL = new Intercept(true, 20, game.height);
+		Intercept interceptR = new Intercept(false, 20, game.height);
 
 		AddChild(sceneTest);
 		AddChild(beatSystem);

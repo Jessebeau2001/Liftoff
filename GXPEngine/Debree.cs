@@ -1,30 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace GXPEngine
 {
-	internal class Debree : Sprite
+	internal class Debree : EasyDraw
 	{
 		public int healthTimer = 0;
-		private float _xSpeed = 0, _ySpeed = 0, _distance = 0;
+		private float _xSpeed, _ySpeed, _distance, _turnSpeed;
 
-		public Debree(float x, float y, float _xTarg, float _yTarg, float speed) : base("rock.png", true)
+		Sprite rock = new Sprite("rock.png", false);
+
+		public Debree(float x, float y, float _xTarg, float _yTarg, int turnSpeed) : base(20, 20)
 		{
-			SetOrigin(width / 2, height / 2);
-			this.x = x; //sets the x & y position fetched from the constructor
+			rock.SetOrigin(rock.width / 2, rock.height / 2);
+			this.x = x;
 			this.y = y;
+			_turnSpeed = turnSpeed;
 
-			_distance = Extensions.GetDistance(_xTarg, _yTarg, x, y); //Calculates the distance from spawnpoint to target x & y.
+			SetOrigin(width / 2, height / 2);
 
+			//AddChild(rock);
+			Ellipse(0, 0, 20, 20);
+
+			_distance = Extensions.GetDistance(_xTarg, _yTarg, x, y);
 			_xSpeed = (_xTarg - x) / _distance; //Calculates the amount of x its needs to move to get to its destenation
 			_ySpeed = (_yTarg - y) / _distance; //Calculates the y amount to move and stay in sync with its x
 		}
 
 		public void Update()
 		{
-			rotation += 10;
+			rotation += _turnSpeed;
 			x += _xSpeed * 5;
 			y += _ySpeed * 5;
 
@@ -39,19 +43,13 @@ namespace GXPEngine
 
 		void OnCollision(GameObject other)
 		{
-			var colInfo = collider.GetCollisionInfo(other.collider);
-			if (other is Intercept && (other as Intercept).isActive(x))
-			{
-				LateDestroy();
-			}
-
-			if (other.name == "guy.png") LateDestroy();
+			if (other is Intercept && (other as Intercept).isActive(x)) LateDestroy();
+			if (other is scene1) LateDestroy();
 		}
 	}
 
-	static class Extensions //Extension class for the mathematical formulas
+	static class Extensions
 	{
-		
 		///<summary> Re-maps a number from one range to another.</summary>wel
 		public static float Map(this float value, float from1, float to1, float from2, float to2)
 		{
