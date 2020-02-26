@@ -18,7 +18,8 @@ namespace GXPEngine
 
 			SetOrigin(width / 2, height / 2);
 
-			AddChild(rock);
+			//AddChild(rock);
+			Ellipse(0, 0, 20, 20);
 
 			_distance = Extensions.GetDistance(_xTarg, _yTarg, x, y);
 			_xSpeed = (_xTarg - x) / _distance; //Calculates the amount of x its needs to move to get to its destenation

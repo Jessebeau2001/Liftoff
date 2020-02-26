@@ -19,12 +19,14 @@ namespace GXPEngine
 		{
 			AddChild(debreeSpawner);
 			//engine.Play2D("sounds/soundtrack.ogg"); 
-			engine.Play2D("sounds/GangPlankCut.ogg");
+
 			BPS = BPM / 60;			// 180 / 60 = 3 beats / second
 			FPB = framerate / BPS;  // 60 / 3 = 20 frames / beat
 			beatMs = (1000 / BPS) * 1; //The amount of time in ms that needs to pass for 1 beat ADD MULTIPLIER TO MAKE LESS ROCKS APPEAR
 
 			parser.LoadBeatmap();
+
+			//IT TAKES 6 BEATS FOR THE FIRST ROCK TO REACH SO CREATE A DELAY FOR PLAYING THE SONG
 		}
 
 		public void Update()
@@ -39,7 +41,7 @@ namespace GXPEngine
 				if (parser.GetData(1, _timeStamp) == "1") debreeSpawner.SpawnDebree(game.width + 30, game.height / 2);
 
 				//clapKick();
-
+				if (_timeStamp == 4) engine.Play2D("sounds/GangPlankCut.ogg");
 				_timeStamp++;
 			}
 		}
