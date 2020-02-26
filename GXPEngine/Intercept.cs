@@ -45,14 +45,16 @@ namespace GXPEngine
 				bar.NextFrame();
 			}
 
-			if (Input.GetKeyDown(thisKey) && bar.currentFrame >= 5)
-			{
-				bar.currentFrame = 0;
-				_active = true;
+			if (Input.GetKeyDown(thisKey) && bar.currentFrame >= 5) click();
+		}
 
-				if (_mirrored) engine.Play2D("sounds/clap.ogg");
-					else engine.Play2D("sounds/kick.ogg");
-			}
+		public void click()
+		{
+			bar.currentFrame = 0;
+			_active = true;
+
+			if (_mirrored) engine.Play2D("sounds/clap.ogg");
+			else engine.Play2D("sounds/kick.ogg");
 		}
 
 		public bool isActive(float debX)
