@@ -28,7 +28,7 @@ namespace GXPEngine
 			Console.WriteLine("0: " + beat[0] + ", 1: " + beat[1]);
 		}
 
-		public string GetMapData(int side, int stamp)
+		public string GetData(int side, int stamp)
 		{
 			if (stamp > beat[0].Length - 1) return "Index Length out of bounds";
 				else return beat[side].Substring(stamp, 1);

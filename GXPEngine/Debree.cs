@@ -42,15 +42,8 @@ namespace GXPEngine
 
 		void OnCollision(GameObject other)
 		{
-			var children = other.GetChildren();
-
-			if (other is Intercept && (other as Intercept).isActive(x))
-			{
-				LateDestroy();
-			}
-
-
-			//if (other.name == "rock.png") LateDestroy();
+			if (other is Intercept && (other as Intercept).isActive(x)) LateDestroy();
+			if (other is scene1) LateDestroy();
 		}
 	}
 

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <root>
     <channel side="left">
-        <beat>111000</beat>
+        <beat>101010101010101011100001110101011</beat>
     </channel>
 
     <channel side="right">
-        <beat>000111</beat>
+        <beat>010101010101010100011110001010100</beat>
     </channel>
 </root>
