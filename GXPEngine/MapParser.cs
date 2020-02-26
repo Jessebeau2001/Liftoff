@@ -9,7 +9,7 @@ namespace GXPEngine
 
 		public MapParser()
 		{
-		
+
 		}
 
 		public void LoadBeatmap()
@@ -20,17 +20,17 @@ namespace GXPEngine
 			int i = 0;
 			foreach (XmlNode node in doc.DocumentElement)
 			{
-				string beat = node["beat"].InnerText;
+				beat[i] = node["beat"].InnerText;
 				Console.WriteLine("Loaded " + node.Attributes[0].Value);
-				this.beat[i] = beat;
-				Console.WriteLine
+				Console.WriteLine(beat[i]);
 				i++;
 			}
+			Console.WriteLine("0: " + beat[0] + ", 1: " + beat[1]);
 		}
 
 		public string GetMapData(int side, int stamp)
 		{
-			if (stamp > beat.Length - 1) return "Index Length out of bounds";
+			if (stamp > beat[0].Length - 1) return "Index Length out of bounds";
 				else return beat[side].Substring(stamp, 1);
 		}
 	}
