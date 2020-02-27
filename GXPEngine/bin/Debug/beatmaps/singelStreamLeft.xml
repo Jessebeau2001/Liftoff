@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root fileName="last_surprise.ogg" BPM="123" offset="40">
+    <channel side="left">
+        <beat>000111111111111111111111111111111111111111111111111</beat>
+    </channel>
+
+    <channel side="right">
+        <beat>000000000000000000000000000000000000000000000000000</beat>
+    </channel>
+</root>

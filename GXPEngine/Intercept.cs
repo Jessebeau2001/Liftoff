@@ -7,7 +7,7 @@ namespace GXPEngine
 	class Intercept : EasyDraw
 	{
 		public float distance = 230;
-		public int thisKey = Key.Z;
+		public int thisKey = Key.Z , thisArrowKey = Key.LEFT;
 		
 		private bool _active = false, _mirrored = false;
 
@@ -34,6 +34,7 @@ namespace GXPEngine
 			{
 				x = (game.width / 2) + distance;
 				thisKey = Key.X;
+				thisArrowKey = Key.RIGHT;
 			}
 			bar.Mirror(mirrored, false);
 			bar.currentFrame = bar.frameCount;
@@ -50,6 +51,7 @@ namespace GXPEngine
 			}
 
 			if (Input.GetKeyDown(thisKey) && bar.currentFrame >= 5) click();
+			if (Input.GetKeyDown(thisArrowKey) && bar.currentFrame >= 5) click(); //For the arrow keys. These are used by the arduino converter	
 		}
 
 		public void click()

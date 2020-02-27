@@ -1,10 +1,10 @@
 ﻿namespace GXPEngine
 {
-	class scene1 : EasyDraw
+	class Scene01 : EasyDraw
 	{
 		Health healthbar = new Health(5);
 
-		public scene1() : base(20, 20)
+		public Scene01() : base(20, 20)
 		{
 			healthbar.y -= game.height / 2;
 			AddChild(healthbar);
@@ -23,7 +23,6 @@
 
 		public void LateDestroy()
 		{
-
 			
 		}
 	}
