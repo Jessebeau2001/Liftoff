@@ -6,20 +6,28 @@ public class MyGame : Game
 {
 	scene1 sceneTest;
 	Beat beatSystem;
-	Scoring score;
 
-	public MyGame() : base(1366, 768, false)        // Create a window that's 800x600 and NOT fullscreen
+	public MyGame() : base(1366, 768, false)
 	{
 		Console.Title = "Slapness Nights Output";
-
 		sceneTest = new scene1();
 		beatSystem = new Beat();
+		AddChild(sceneTest);
+		AddChild(beatSystem);
 	}
 
 	void Update()
 	{
-		if (Input.GetKey(Key.ENTER)) 
+		if (Input.GetKeyDown(Key.ENTER)) 
 		{
+			return;
+			if (sceneTest != null)
+			{
+				sceneTest.LateDestroy();
+				beatSystem.LateDestroy();
+			}
+			sceneTest = new scene1();
+			beatSystem = new Beat();
 			AddChild(sceneTest);
 			AddChild(beatSystem);
 		}

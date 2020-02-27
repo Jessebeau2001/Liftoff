@@ -28,11 +28,11 @@ namespace GXPEngine
 			bar.SetOrigin(bar.width / 2, 0);
 			if (!mirrored)
 			{
-				x = game.width / 2 - distance;
+				x = (game.width / 2) - distance;
 			}
 			else
 			{
-				x = game.width / 2 + distance;
+				x = (game.width / 2) + distance;
 				thisKey = Key.X;
 			}
 			bar.Mirror(mirrored, false);
@@ -65,15 +65,15 @@ namespace GXPEngine
 		{
 			switch (Mathf.Abs(x - debX))
 			{
-				case float n when (n <= 10 && n >= 0):
+				case float n when (n <= 15 && n >= 0):
 					score.changeScore(300);
 					scorePop(300);
 					break;
-				case float n when (n < 20 && n >= 10):
+				case float n when (n <= 25 && n > 15):
 					score.changeScore(150);
 					scorePop(150);
 					break;
-				case float n when (n > 20):
+				case float n when (n > 25):
 					score.changeScore(50);
 					scorePop(50);
 					break;
@@ -93,6 +93,11 @@ namespace GXPEngine
 		{
 			if (_active) GetHit(debX);
 			return _active;
+		}
+
+		public float getX()
+		{
+			return x;
 		}
 	}
 }

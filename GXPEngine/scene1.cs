@@ -6,7 +6,7 @@
 
 		public scene1() : base(20, 20)
 		{
-			
+			healthbar.y -= game.height / 2;
 			AddChild(healthbar);
 
 			x = game.width / 2;
@@ -19,6 +19,12 @@
 		{
 			healthbar.getDamage();
 			return true;
+		}
+
+		public void LateDestroy()
+		{
+
+			
 		}
 	}
 }

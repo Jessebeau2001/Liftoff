@@ -1,4 +1,6 @@
-﻿namespace GXPEngine
+﻿using System.Drawing;
+
+namespace GXPEngine
 {
 	class Scoring : EasyDraw
 	{
@@ -12,7 +14,7 @@
 
 		public void Update()
 		{
-			Clear( 0 );
+			Clear(Color.Transparent);
 			Text( "Score:\t" + _zero.Substring(_score.ToString().Length) + _score.ToString(), 20, 60);
 		}
 

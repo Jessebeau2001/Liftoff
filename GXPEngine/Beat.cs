@@ -8,7 +8,7 @@ namespace GXPEngine
 		public float BPM = 123 , BPS, FPB, framerate = 60, beatMs, deltaTime, offset;
 		private int _timeStamp = 0;
 
-		private bool _clap = false;
+		private bool _clap = true;
 
 		ISoundEngine engine = new ISoundEngine();
 		DebreeSpawner debreeSpawner = new DebreeSpawner();
@@ -25,10 +25,10 @@ namespace GXPEngine
 			offset = parser.getOffset();
 			engine.Play2D(parser.getSongPath());
 
-			BPS = BPM / 60;			// 180 / 60 = 3 beats / second
-			FPB = framerate / BPS;  // 60 / 3 = 20 frames / beat
+			BPS = BPM / 60;
+			FPB = framerate / BPS;
 			beatMs = (1000 / BPS) * 1; //The amount of time in ms that needs to pass for 1 beat ADD MULTIPLIER TO MAKE LESS ROCKS APPEAR
-			
+			Console.WriteLine("beatMs: " + beatMs);
 			deltaTime += offset; //Last Surprise Offset
 			
 			interceptL = new Intercept(score, true, 20, game.height);
@@ -52,8 +52,8 @@ namespace GXPEngine
 			if (deltaTime > beatMs)
 			{
 				deltaTime -= beatMs;
-				if (parser.GetData(0, _timeStamp) == "1") debreeSpawner.SpawnDebree(-30, game.height / 2);
-				if (parser.GetData(1, _timeStamp) == "1") debreeSpawner.SpawnDebree(game.width + 30, game.height / 2);
+				if (parser.GetData(0, _timeStamp) == "1") debreeSpawner.SpawnDebree(-30, game.height / 2, interceptR, beatMs);
+				if (parser.GetData(1, _timeStamp) == "1") debreeSpawner.SpawnDebree(game.width + 30, game.height / 2, interceptL, beatMs);
 				//clapKick();
 				_timeStamp++;
 			}
