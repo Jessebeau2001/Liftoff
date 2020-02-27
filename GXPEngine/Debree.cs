@@ -6,12 +6,15 @@ namespace GXPEngine
 	{
 		public int healthTimer = 0;
 		private float _xSpeed, _ySpeed, _distance, _beatMs;
+		private int _hitAnimFrame = 0;
 
-		Sprite rock = new Sprite("rock.png", false);
+		Sprite note = new Sprite("assets/note_red.png", false);
 
 		public Debree(float x, float y, float _xTarg, float _yTarg, float beatMs) : base(100, 100)
 		{
-			rock.SetOrigin(rock.width / 2, rock.height / 2);
+			note.SetOrigin(note.width / 2, note.height / 2);
+			note.scale = .2f;
+			AddChild(note);
 			this.x = x;
 			this.y = y;
 			this._beatMs = beatMs;
@@ -26,8 +29,8 @@ namespace GXPEngine
 
 		public void Update()
 		{
-			x += (_distance / _beatMs) * Time.deltaTime * _xSpeed;
-			y += (_distance / _beatMs) * Time.deltaTime * _ySpeed;
+			x += ((_distance / _beatMs) * Time.deltaTime * _xSpeed) / 2;
+			y += ((_distance / _beatMs) * Time.deltaTime * _ySpeed) / 2;
 
 			if (x > game.width + 30 || x < -30)
 			{
@@ -36,6 +39,12 @@ namespace GXPEngine
 					LateDestroy();
 				}
 			}
+		}
+
+		public void HitAnim()
+		{
+
+			_hitAnimFrame++;
 		}
 
 		void OnCollision(GameObject other)

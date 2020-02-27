@@ -7,8 +7,9 @@ public class MyGame : Game
 	Scene01 sceneTest;
 	Beat beatSystem;
 
-	public MyGame() : base(1366, 768, false)
+	public MyGame() : base(1366, 768, false,false)
 	{
+		targetFps = 90;
 		Console.Title = "Slapness Nights Output";
 		sceneTest = new Scene01();
 		beatSystem = new Beat();

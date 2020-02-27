@@ -5,13 +5,13 @@ namespace GXPEngine
 {
 	class Beat : Pivot
 	{
-		public float BPM = 123 , BPS, FPB, framerate = 60, beatMs, deltaTime, offset;
+		public float BPM = 120 , BPS, FPB, framerate = 60, beatMs, deltaTime, offset;
 		private int _timeStamp = 0;
 		private bool _clap = true;
 
 		ISoundEngine engine = new ISoundEngine();
 		DebreeSpawner debreeSpawner = new DebreeSpawner();
-		MapParser parser = new MapParser("singelStreamLeft");
+		MapParser parser = new MapParser("pleasant");
 
 		Intercept interceptL;
 		Intercept interceptR;
@@ -42,9 +42,9 @@ namespace GXPEngine
 		public void Update()
 		{
 
-			//if (Input.GetKey(Key.UP)) { deltaTime++; offset++; }
-			//if (Input.GetKey(Key.DOWN)) { deltaTime--; offset--; }
-			//Console.WriteLine("Current selected offset: " + offset);
+			if (Input.GetKey(Key.UP)) { deltaTime++; offset++; }
+			if (Input.GetKey(Key.DOWN)) { deltaTime--; offset--; }
+			Console.WriteLine("Current selected offset: " + offset);
 
 			deltaTime += Time.deltaTime;
 			if (deltaTime > beatMs)
