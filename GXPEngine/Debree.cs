@@ -6,12 +6,14 @@ namespace GXPEngine
 	{
 		public int healthTimer = 0;
 		private float _xSpeed, _ySpeed, _distance, _beatMs;
-		private int _hitAnimFrame = 0;
+		private int frames = 0;
+		private bool beenHit = false;
 
-		Sprite note = new Sprite("assets/note_red.png", false);
+		Sprite note;
 
-		public Debree(float x, float y, float _xTarg, float _yTarg, float beatMs) : base(100, 100)
+		public Debree(float x, float y, float _xTarg, float _yTarg, float beatMs, string texturePath) : base(100, 100)
 		{
+			note = new Sprite(texturePath, false);
 			note.SetOrigin(note.width / 2, note.height / 2);
 			note.scale = .2f;
 			AddChild(note);
@@ -29,6 +31,12 @@ namespace GXPEngine
 
 		public void Update()
 		{
+			if (beenHit)
+			{
+				fadeOut();
+				return;
+			}
+
 			x += ((_distance / _beatMs) * Time.deltaTime * _xSpeed) / 2;
 			y += ((_distance / _beatMs) * Time.deltaTime * _ySpeed) / 2;
 
@@ -45,9 +53,17 @@ namespace GXPEngine
 		{
 			if (other is Intercept && (other as Intercept).isActive(x))
 			{
-				LateDestroy();
+				beenHit = true;
 			}
-			if (other is Scene01 && (other as Scene01).getDamage()) LateDestroy();
+			if (other is Health && (other as Health).getDamage()) LateDestroy();
+		}
+
+		public void fadeOut()
+		{
+			scale *= 1.05f;
+			note.alpha -= note.alpha / 5;
+			frames++;
+			if (frames > 5) LateDestroy();
 		}
 	}
 

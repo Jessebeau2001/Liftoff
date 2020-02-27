@@ -11,15 +11,16 @@ namespace GXPEngine
 
 		ISoundEngine engine = new ISoundEngine();
 		DebreeSpawner debreeSpawner = new DebreeSpawner();
-		MapParser parser = new MapParser("pleasant");
+		MapParser parser;
 
 		Intercept interceptL;
 		Intercept interceptR;
 
 		Scoring score = new Scoring();
 
-		public Beat()
+		public Beat(string mapName)
 		{
+			parser = new MapParser(mapName);
 			parser.LoadBeatmap();
 			BPM = parser.getBPM();
 			offset = parser.getOffset();
@@ -37,11 +38,10 @@ namespace GXPEngine
 
 			AddChild(debreeSpawner);
 			AddChild(score);
-		}
+			}
 
 		public void Update()
 		{
-
 			if (Input.GetKey(Key.UP)) { deltaTime++; offset++; }
 			if (Input.GetKey(Key.DOWN)) { deltaTime--; offset--; }
 			//Console.WriteLine("Current selected offset: " + offset);
@@ -65,6 +65,11 @@ namespace GXPEngine
 			if (_clap) interceptL.click();
 				else interceptR.click();
 			_clap = !_clap;
+		}
+
+		public void StopSound()
+		{
+			engine.StopAllSounds();
 		}
 	}
 }

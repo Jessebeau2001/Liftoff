@@ -4,35 +4,27 @@ using System.Xml;
 
 public class MyGame : Game
 {
-	Scene01 sceneTest;
-	Beat beatSystem;
+	Scene scene00;
+	Scene scene01;
+	Scene scene02;
+	Scene scene03;
 
 	public MyGame() : base(1366, 768, false, false)
 	{
 		targetFps = 90;
 		Console.Title = "Slapness Nights Output";
-		sceneTest = new Scene01();
-		beatSystem = new Beat();
-		AddChild(sceneTest);
-		AddChild(beatSystem);
+
+		//scene00 = new Scene("intro");
+		scene01 = new Scene("pleasant");
+		//scene02 = new Scene("unpleasant");
+		//scene03 = new Scene("hell");
+		
+		AddChild(scene01);
 	}
 
 	void Update()
-	{
-
-		return;
-		if (Input.GetKeyDown(Key.ENTER)) 
-		{
-			if (sceneTest != null)
-			{
-				sceneTest.LateDestroy();
-				beatSystem.LateDestroy();
-			}
-			sceneTest = new Scene01();
-			beatSystem = new Beat();
-			AddChild(sceneTest);
-			AddChild(beatSystem);
-		}
+	{		
+		
 	}
 
 	static void Main()							// Main() is the first method that's called when the program is run
