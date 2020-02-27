@@ -20,10 +20,5 @@
 			healthbar.getDamage();
 			return true;
 		}
-
-		public void LateDestroy()
-		{
-			
-		}
 	}
 }

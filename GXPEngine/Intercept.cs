@@ -84,10 +84,9 @@ namespace GXPEngine
 
 		public void scorePop(int score)
 		{
-			//popup = new Popup(rnd.Next(x - 50, x + 50), rnd.Next(y - 50, y + 50), score.ToString());
 			popup = new Popup(rnd.Next(-75, 75), 300 + rnd.Next(-75, 75), score.ToString());
 			popupList.Add(popup);
-			Console.WriteLine(popupList.Count);
+			//Console.WriteLine(popupList.Count);
 			LateAddChild(popupList[popupList.Count - 1]);
 		}
 

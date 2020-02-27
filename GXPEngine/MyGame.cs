@@ -7,7 +7,7 @@ public class MyGame : Game
 	Scene01 sceneTest;
 	Beat beatSystem;
 
-	public MyGame() : base(1366, 768, false,false)
+	public MyGame() : base(1366, 768, false, false)
 	{
 		targetFps = 90;
 		Console.Title = "Slapness Nights Output";
@@ -19,9 +19,10 @@ public class MyGame : Game
 
 	void Update()
 	{
+
+		return;
 		if (Input.GetKeyDown(Key.ENTER)) 
 		{
-			return;
 			if (sceneTest != null)
 			{
 				sceneTest.LateDestroy();

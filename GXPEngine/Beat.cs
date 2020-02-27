@@ -44,7 +44,7 @@ namespace GXPEngine
 
 			if (Input.GetKey(Key.UP)) { deltaTime++; offset++; }
 			if (Input.GetKey(Key.DOWN)) { deltaTime--; offset--; }
-			Console.WriteLine("Current selected offset: " + offset);
+			//Console.WriteLine("Current selected offset: " + offset);
 
 			deltaTime += Time.deltaTime;
 			if (deltaTime > beatMs)
