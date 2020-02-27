@@ -5,21 +5,21 @@ namespace GXPEngine
 	internal class Debree : EasyDraw
 	{
 		public int healthTimer = 0;
-		private float _xSpeed, _ySpeed, _distance, _turnSpeed;
+		private float _xSpeed, _ySpeed, _distance, _speed;
 
 		Sprite rock = new Sprite("rock.png", false);
 
-		public Debree(float x, float y, float _xTarg, float _yTarg, int turnSpeed) : base(20, 20)
+		public Debree(float x, float y, float _xTarg, float _yTarg, int speed) : base(100, 100)
 		{
 			rock.SetOrigin(rock.width / 2, rock.height / 2);
 			this.x = x;
 			this.y = y;
-			_turnSpeed = turnSpeed;
+			this._speed = speed;
 
 			SetOrigin(width / 2, height / 2);
 
 			//AddChild(rock);
-			Ellipse(10, 10, 20, 20);
+			Ellipse(width / 2, height / 2, 20, 20);
 
 			_distance = Extensions.GetDistance(_xTarg, _yTarg, x, y);
 			_xSpeed = (_xTarg - x) / _distance; //Calculates the amount of x its needs to move to get to its destenation
@@ -28,7 +28,6 @@ namespace GXPEngine
 
 		public void Update()
 		{
-			rotation += _turnSpeed;
 			x += _xSpeed * 5;
 			y += _ySpeed * 5;
 
@@ -45,6 +44,7 @@ namespace GXPEngine
 		{
 			if (other is Intercept && (other as Intercept).isActive(x)) LateDestroy();
 			if (other is scene1) LateDestroy();
+			
 		}
 	}
 

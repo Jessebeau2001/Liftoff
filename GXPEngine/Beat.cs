@@ -17,29 +17,29 @@ namespace GXPEngine
 		Intercept interceptL;
 		Intercept interceptR;
 
-		Random rnd = new Random();
+		Scoring score = new Scoring();
 		public Beat()
 		{
 			parser.LoadBeatmap();
-
 			BPM = parser.getBPM();
 			offset = parser.getOffset();
-
-			AddChild(debreeSpawner);
 			engine.Play2D(parser.getSongPath());
+
 			BPS = BPM / 60;			// 180 / 60 = 3 beats / second
 			FPB = framerate / BPS;  // 60 / 3 = 20 frames / beat
 			beatMs = (1000 / BPS) * 1; //The amount of time in ms that needs to pass for 1 beat ADD MULTIPLIER TO MAKE LESS ROCKS APPEAR
-
-			interceptL = new Intercept(true, 20, game.height);
-			interceptR = new Intercept(false, 20, game.height);
-
+			
+			deltaTime += offset; //Last Surprise Offset
+			
+			interceptL = new Intercept(score, true, 20, game.height);
+			interceptR = new Intercept(score, false, 20, game.height);
 			AddChild(interceptL);
 			AddChild(interceptR);
 
-			deltaTime += offset; //Last Surprise Offset
-
 			Console.WriteLine(BPM);
+
+			AddChild(debreeSpawner);
+			AddChild(score);
 		}
 
 		public void Update()

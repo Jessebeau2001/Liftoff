@@ -6,9 +6,12 @@ public class MyGame : Game
 {
 	scene1 sceneTest;
 	Beat beatSystem;
+	Scoring score;
 
 	public MyGame() : base(1366, 768, false)        // Create a window that's 800x600 and NOT fullscreen
 	{
+		Console.Title = "Slapness Nights Output";
+
 		sceneTest = new scene1();
 		beatSystem = new Beat();
 
