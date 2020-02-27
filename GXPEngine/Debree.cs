@@ -43,7 +43,7 @@ namespace GXPEngine
 		void OnCollision(GameObject other)
 		{
 			if (other is Intercept && (other as Intercept).isActive(x)) LateDestroy();
-			if (other is scene1) LateDestroy();
+			if (other is scene1 && (other as scene1).getDamage()) LateDestroy();
 			
 		}
 	}

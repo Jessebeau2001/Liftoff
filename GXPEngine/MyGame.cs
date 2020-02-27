@@ -14,15 +14,15 @@ public class MyGame : Game
 
 		sceneTest = new scene1();
 		beatSystem = new Beat();
-
-		AddChild(sceneTest);
-		AddChild(beatSystem);
-
 	}
 
 	void Update()
 	{
-		
+		if (Input.GetKey(Key.ENTER)) 
+		{
+			AddChild(sceneTest);
+			AddChild(beatSystem);
+		}
 	}
 
 	static void Main()							// Main() is the first method that's called when the program is run
