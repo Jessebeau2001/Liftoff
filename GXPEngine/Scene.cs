@@ -11,6 +11,9 @@
 			AddChild(beatSystem);
 			Health healthbar = new Health(5, beatSystem);
 			AddChild(healthbar);
+
+			Sprite jeff = new Sprite("assets/jeff.png");
+			AddChild(jeff);
 		}
 	}
 }

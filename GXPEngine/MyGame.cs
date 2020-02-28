@@ -16,15 +16,15 @@ public class MyGame : Game
 		targetFps = 90;
 		Console.Title = "Slapness Nights Output";
 		//-----------------------
-		menu = new MainMenu();
-		AddChild(menu);
+		//menu = new MainMenu();
+		//AddChild(menu);
 		
-		//scene00 = new Scene("intro", "assets/background_intro.png");
+		scene00 = new Scene("intro", "assets/background_intro.png");
 		//scene01 = new Scene("pleasant", "assets/background_pleasant.png");
 		//scene02 = new Scene("unpleasant", "assets/background_unpleasant.png");
 		//scene03 = new Scene("hell", "assets/background_hell.png");
 
-		//AddChild(scene00);
+		AddChild(scene00);
 	}
 
 	void Update()
