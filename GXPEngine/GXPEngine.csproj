@@ -46,6 +46,7 @@
     <Compile Include="Beat.cs" />
     <Compile Include="Debree.cs" />
     <Compile Include="DebreeSpawner.cs" />
+    <Compile Include="MainMenu.cs" />
     <Compile Include="Health.cs" />
     <Compile Include="Intercept.cs" />
     <Compile Include="LoopAnimOnce.cs" />

@@ -7,7 +7,9 @@ namespace GXPEngine
 	{
 		public float BPM = 120 , BPS, FPB, framerate = 60, beatMs, deltaTime, offset;
 		private int _timeStamp = 0;
-		private bool _clap = true;
+		private bool _clap = false;
+
+		private bool devToolsEnabled = false;
 
 		ISoundEngine engine = new ISoundEngine();
 		DebreeSpawner debreeSpawner = new DebreeSpawner();
@@ -42,9 +44,12 @@ namespace GXPEngine
 
 		public void Update()
 		{
-			if (Input.GetKey(Key.UP)) { deltaTime++; offset++; }
-			if (Input.GetKey(Key.DOWN)) { deltaTime--; offset--; }
-			//Console.WriteLine("Current selected offset: " + offset);
+			//----------------------------
+			if (devToolsEnabled) {
+			if (Input.GetKeyDown(Key.UP)) { deltaTime++; offset++; }
+			if (Input.GetKeyDown(Key.DOWN)) { deltaTime--; offset--; }
+			Console.WriteLine("Current selected offset: " + offset); }
+			//----------------------------
 
 			deltaTime += Time.deltaTime;
 			if (deltaTime > beatMs)
@@ -52,16 +57,15 @@ namespace GXPEngine
 				deltaTime -= beatMs;
 				if (parser.GetData(0, _timeStamp) == "1") debreeSpawner.SpawnDebree(-30, game.height / 2, interceptR, beatMs);
 				if (parser.GetData(1, _timeStamp) == "1") debreeSpawner.SpawnDebree(game.width + 30, game.height / 2, interceptL, beatMs);
-				//clapKick();
+				//----------------------------
+				if (devToolsEnabled) clapKick();
+				//----------------------------
 				_timeStamp++;
 			}
 		}
 
 		public void clapKick()
 		{
-			//if(_clap) engine.Play2D("sounds/clap.ogg");
-			//	else engine.Play2D("sounds/kick.ogg");
-
 			if (_clap) interceptL.click();
 				else interceptR.click();
 			_clap = !_clap;

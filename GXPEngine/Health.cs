@@ -46,7 +46,9 @@
 
 		public void GameOver()
 		{
-			beatsystem.StopSound();
+			//----------------------------
+			//beatsystem.StopSound();
+			//----------------------------
 		}
 	}
 }
