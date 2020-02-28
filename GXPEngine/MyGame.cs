@@ -1,6 +1,5 @@
 using System;									// System contains a lot of default C# libraries 
 using GXPEngine;                                // GXPEngine contains the engine
-using System.Xml;
 
 public class MyGame : Game
 {
@@ -30,26 +29,7 @@ public class MyGame : Game
 
 	void Update()
 	{
-		if (Input.GetKeyDown(Key.SPACE) && level == 0)
-		{
-			level++;
-			Scene intro = new Scene("intro", "assets/background_intro.png");
-			AddChild(intro);
-			menu.StartFade(100);
-		}
-	}
 
-	void NextLevel()
-	{
-		switch (level)
-		{
-			case 1:
-				Scene intro = new Scene("intro", "assets/background_intro.png");
-				AddChild(intro);
-				break;
-			case 2:
-				break;
-		}
 	}
 
 	static void Main()							// Main() is the first method that's called when the program is run

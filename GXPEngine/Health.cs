@@ -1,4 +1,6 @@
-﻿	namespace GXPEngine
+﻿using System;	
+
+namespace GXPEngine
 {
 	class Health : EasyDraw
 	{
@@ -48,6 +50,7 @@
 		{
 			//----------------------------
 			//beatsystem.StopSound();
+			Environment.Exit(1);
 			//----------------------------
 		}
 	}

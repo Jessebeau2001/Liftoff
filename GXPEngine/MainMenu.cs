@@ -2,10 +2,10 @@
 {
 	class MainMenu : Sprite
 	{
-
-
-		private int frames;
+		private int frames = 100, doOnce = 0;
 		private bool fadeOut = false;
+
+		Scene intro;
 
 		public MainMenu() : base("assets/main_menu.png", true, false)
 		{
@@ -14,6 +14,8 @@
 
 		public void Update()
 		{
+			if (Input.GetKeyDown(Key.SPACE) && doOnce == 0) fadeOut = true;
+
 			if (fadeOut) FadeOut();
 		}
 
@@ -21,18 +23,13 @@
 		{
 			alpha -= alpha / frames;
 			frames--;
-		}
-
-		public void StartFade(int frames)
-		{
-			this.frames = frames;
-			fadeOut = true;
-		}
-
-		public bool Done()
-		{
-			if (alpha < 1) return true;
-				else return false;
+			if (frames <= 0)
+			{
+				doOnce++;
+				fadeOut = false;
+				intro = new Scene("intro", "assets/background_intro.png");
+				LateAddChild(intro);
+			}
 		}
 	}
 }
